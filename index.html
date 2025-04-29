@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مرحبا بك في حساب مساحة وكتلة وحجم بقعة النفط المتسرب في البحر بالذكاء الاصطناعي</title>
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://docs.opencv.org/master/opencv.js" onload="openCvReady();"></script>
+</head>
+<body>
+
+  <!-- شاشة الترحيب -->
+  <div id="welcome-screen" class="welcome-screen">
+    <h1>  مرحبا بك في حساب مساحة وكتلة وحجم بقعة النفط المتسرب في البحر بالذكاء الاصطناعي</h1>
+    <h2 class="orange-text">📚طلاب المعهد الديني الإعدادي الثانوي📚</h2>
+    <p>مرحبًا بك! اضغط على "ابدأ الآن" للانتقال إلى التطبيق.</p>
+    <button id="startButton" class="btn">ابدأ الآن 🚀</button>
+  </div>
+
+  <!-- المحتوى الرئيسي -->
+  <div id="main-content" class="container" style="display: none;">
+    <h1>📏 حساب تسرب النفط</h1>
+
+    <div class="input-section">
+      <label for="imageUpload">📸 رفع صور التسرب (حتى 10 صور):</label>
+      <input type="file" id="imageUpload" multiple accept="image/*">
+      <p id="imageCount">📷 </p>
+      <button onclick="processImage()">🔍 تحليل الصورة</button>
+    </div>
+
+    <div class="input-section">
+      <label for="depths">📏 أدخل قيم العمق (حتى 150 قيمة - افصلها بفاصلة):</label>
+      <textarea id="depths" placeholder="مثال: 1.5, 2, 1.8, ..." rows="3"></textarea>
+    </div>
+
+    <div class="input-section">
+      <label for="droneHeight">📡 ارتفاع الدرون عن سطح الماء (متر):</label>
+      <input type="number" id="droneHeight" placeholder="مثال: 50">
+    </div>
+
+    <div class="input-section">
+      <label for="oilType">🛢️ اختر نوع النفط:</label>
+      <select id="oilType">
+        <option value="800">ديزل (800 kg/m³)</option>
+        <option value="850">بنزين (850 kg/m³)</option>
+        <option value="900">زيت خام ثقيل (900 kg/m³)</option>
+        <option value="950">كيروسين (950 kg/m³)</option>
+        <option value="970">زيت محركات (970 kg/m³)</option>
+        <option value="990">نفط وقود السفن (990 kg/m³)</option>
+        <option value="custom">🔧 إدخال كثافة مخصصة</option>
+      </select>
+    </div>
+
+    <div class="input-section" id="customDensityContainer" style="display: none;">
+      <label for="customDensity">⚖️ أدخل الكثافة يدويًا (بين 700 - 1000 kg/m³):</label>
+      <input type="number" id="customDensity" placeholder="مثال: 850">
+    </div>
+
+    <button class="btn" onclick="calculateOilMass()">📊 حساب</button>
+
+    <!-- مكان عرض النتائج -->
+    <div id="result-container">
+      <h2>📊 النتائج:</h2>
+      <div id="output">لم يتم الحساب بعد...</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
